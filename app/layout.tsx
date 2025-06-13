@@ -8,6 +8,7 @@ import { getAllGames } from '../lib/games';
 import { notFound } from 'next/navigation';
 import { SidebarProvider } from '../components/SidebarContext';
 import DynamicLayout from '../components/DynamicLayout';
+import Script from 'next/script';
 
 export default function RootLayout({ children, params }: { children: React.ReactNode, params?: { lang?: string } }) {
   // 判断是否为多语言页面
@@ -18,6 +19,21 @@ export default function RootLayout({ children, params }: { children: React.React
 
   return (
     <html lang={lang || 'en'} className="w-full h-full">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RJFSSGBY99"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RJFSSGBY99');
+          `}
+        </Script>
+      </head>
       <body className="w-full h-full bg-[#181a2a] min-h-screen flex flex-col min-h-screen">
         <SidebarProvider>
           <TopBar lang={lang || 'en'} />
