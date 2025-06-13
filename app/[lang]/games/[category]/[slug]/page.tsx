@@ -6,32 +6,34 @@ export async function generateStaticParams({ params }: { params: { lang?: string
   return getAllGameSlugs().map(({ params }) => ({ ...params, lang: params.lang }));
 }
 
-export async function generateMetadata({ params }: { params: { lang: string; category: string; slug: string } }): Promise<Metadata> {
-  const game = getGameBySlug(params.category, params.slug, params.lang);
+export async function generateMetadata({ params }: { params: Promise<{ lang: string; category: string; slug: string }> }): Promise<Metadata> {
+  const { lang, category, slug } = await params;
+  const game = getGameBySlug(category, slug, lang);
   return {
     title: `${game?.title} - FreeOnlineGamesHub`,
     description: game?.description,
     openGraph: {
       title: game?.title,
       description: game?.description,
-      images: [game?.coverImage],
-      url: `https://FreeOnlineGamesHub.com/${params.lang}/games/${game?.category}/${game?.slug}`,
+      images: game?.coverImage ? [game.coverImage] : [],
+      url: `https://FreeOnlineGamesHub.com/${lang}/games/${game?.category}/${game?.slug}`,
       siteName: 'FreeOnlineGamesHub',
     },
   };
 }
 
-export default function GameDetail({ params }: { params: { lang: string; category: string; slug: string } }) {
-  const game: GameData | undefined = getGameBySlug(params.category, params.slug, params.lang);
-  const relatedGames: GameData[] = game ? getGamesByCategory(game.category, params.lang).filter((g: GameData) => g.slug !== game.slug).slice(0, 8) : [];
+export default async function GameDetail({ params }: { params: Promise<{ lang: string; category: string; slug: string }> }) {
+  const { lang, category, slug } = await params;
+  const game: GameData | undefined = getGameBySlug(category, slug, lang);
+  const relatedGames: GameData[] = game ? getGamesByCategory(game.category, lang).filter((g: GameData) => g.slug !== game.slug).slice(0, 8) : [];
   if (!game) return <div>Game not found</div>;
   return (
     <div className="max-w-5xl mx-auto p-4">
       {/* 面包屑导航 */}
       <nav className="text-sm text-gray-500 mb-4">
-        <Link href={`/${params.lang}`} className="hover:text-blue-600">Home</Link>
+        <Link href={`/${lang}`} className="hover:text-blue-600">Home</Link>
         <span className="mx-2">›</span>
-        <Link href={`/${params.lang}/games/${game.category}`} className="hover:text-blue-600 capitalize">{game.category}</Link>
+        <Link href={`/${lang}/games/${game.category}`} className="hover:text-blue-600 capitalize">{game.category}</Link>
         <span className="mx-2">›</span>
         <span className="text-gray-700">{game.title}</span>
       </nav>
@@ -94,7 +96,7 @@ export default function GameDetail({ params }: { params: { lang: string; categor
             {relatedGames.map((g: GameData) => (
               <Link
                 key={g.slug}
-                href={`/${params.lang}/games/${g.category}/${g.slug}`}
+                href={`/${lang}/games/${g.category}/${g.slug}`}
                 className="block bg-white rounded-lg shadow hover:shadow-lg transition p-2 border border-gray-100"
               >
                 <img src={g.coverImage} alt={g.title} className="w-full h-24 object-cover rounded mb-2" />

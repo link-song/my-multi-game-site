@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 // 游戏数据接口定义
-interface GameData {
+export interface GameData {
   title: string;
   category: string;
   tags: string[];
@@ -70,7 +70,7 @@ export function getAllGames() {
 }
 
 // 根据分类和 slug 获取特定游戏
-export function getGameBySlug(category: string, slug: string): GameData | undefined {
+export function getGameBySlug(category: string, slug: string, lang?: string): GameData | undefined {
   const games = getGames();
   return games.find(g => g.category === category && g.slug === slug);
 }
@@ -81,13 +81,14 @@ export function getAllGameSlugs() {
   return games.map(g => ({
     params: { 
       category: g.category, 
-      slug: g.slug 
+      slug: g.slug,
+      lang: 'en' // 默认语言
     }
   }));
 }
 
 // 根据分类获取游戏
-export function getGamesByCategory(category: string): GameData[] {
+export function getGamesByCategory(category: string, lang?: string): GameData[] {
   const games = getGames();
   return games.filter(g => g.category === category);
 }
