@@ -1,0 +1,22 @@
+{
+  "title": "Blocky Blast",
+  "category": "puzzle",
+  "tags": [
+    "1-player",
+    "2d",
+    "block",
+    "color",
+    "cute",
+    "free",
+    "fun",
+    "kids",
+    "mobile",
+    "mouse",
+    "puzzle",
+    "unity"
+  ],
+  "iframeUrl": "https://www.onlinegames.io/games/2022/unity3/blocky-blast/index.html",
+  "coverImage": "https://www.onlinegames.io/media/posts/551/responsive/Blocky-Blast-xs.jpg",
+  "description": "Blocky Blast is a 2D puzzle game where you try to blast the cubes of the same color on the grid.  Tap on the neighbor cubes with matching colors to remove them altogether.  Continue removing cubes until you fulfill the task of the level.  However, be mindful that you have a limited number of moves.",
+  "slug": "blocky-blast"
+}

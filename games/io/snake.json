@@ -1,0 +1,18 @@
+{
+  "title": "Snake",
+  "category": "io",
+  "tags": [
+    "2-player",
+    "2d",
+    "animal",
+    "arcade",
+    "arena",
+    "free",
+    "kids",
+    "snake"
+  ],
+  "iframeUrl": "https://cloud.onlinegames.io/games/2024/phaser/snake/index-og.html",
+  "coverImage": "https://www.onlinegames.io/media/posts/919/responsive/snake-xs.jpg",
+  "description": "Slither your way through a maze with Snake Online.  Your mission is to eat all the apples you can find without biting your own tail.  As this sneaky snake grows, so does the challenge.  Each apple makes it longer and you smarter!",
+  "slug": "snake"
+}

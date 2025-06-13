@@ -1,0 +1,20 @@
+{
+  "title": "Solitaire Adventure",
+  "category": "adventure",
+  "tags": [
+    "1-player",
+    "2d",
+    "board",
+    "card",
+    "free",
+    "html5",
+    "logic",
+    "mouse",
+    "puzzle",
+    "solitaire"
+  ],
+  "iframeUrl": "https://www.onlinegames.io/games/2022/unity4/solitaire-adventure/index.html",
+  "coverImage": "https://www.onlinegames.io/media/posts/519/responsive/Solitaire-Adventure-Tripeaks-xs.jpg",
+  "description": "Solitaire Adventure is a Tripeaks Solitaire game for everyone.  There are ten islands with tripeaks puzzles waiting to be solved.  Start with Bella's Island; she will guide you through this adventure.  Collect cards and clear all the boards.",
+  "slug": "solitaire-adventure"
+}

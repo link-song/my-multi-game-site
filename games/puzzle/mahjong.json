@@ -1,0 +1,20 @@
+{
+  "title": "Mahjong",
+  "category": "puzzle",
+  "tags": [
+    "1-player",
+    "2d",
+    "brain",
+    "cozy",
+    "free",
+    "html5",
+    "logic",
+    "mouse",
+    "puzzle",
+    "strategy"
+  ],
+  "iframeUrl": "https://cloud.onlinegames.io/games/2025/unity/mahjong/index-og.html",
+  "coverImage": "https://www.onlinegames.io/media/posts/966/responsive/Mahjong-xs.jpg",
+  "description": "Mahjong Online is a game of patience, skill, and a bit of luck.  In this version of a decades-old game, your goal will be to match identical tiles to remove them from the board until none remain.  The difficulty comes with this rule: only free tiles can be picked.  So, blocked tiles must be open on at least one side.",
+  "slug": "mahjong"
+}
