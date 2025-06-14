@@ -15,15 +15,22 @@
 
 ```
 /app/
-  layout.tsx           // 全局布局（TopBar、Sidebar、Footer、ScrollToTop、Google Analytics）
-  page.tsx             // 首页
-  about/page.tsx       // 关于页面
-  search/page.tsx      // 搜索结果页
+  layout.tsx           // 全局布局（TopBar、Sidebar、Footer、ScrollToTop、Google Analytics、默认 metadata）
+  page.tsx             // 首页（完整 SEO metadata）
+  about/page.tsx       // 关于页面（完整 SEO metadata）
+  search/page.tsx      // 搜索结果页（动态 SEO metadata）
   api/search/route.ts  // 搜索建议API
   games/               // 分类游戏页面
+    [category]/        // 分类页面（动态 SEO metadata）
+      page.tsx
+      [slug]/          // 游戏详情页（动态 SEO metadata）
+        page.tsx
   [lang]/              // 多语言支持
-    page.tsx           // 多语言首页
+    page.tsx           // 多语言首页（动态 SEO metadata）
     games/             // 多语言下的游戏页面
+      [category]/
+        [slug]/
+          page.tsx     // 多语言游戏详情页（动态 SEO metadata）
   sitemap.ts           // 动态生成 sitemap.xml
   robots.ts            // 生成 robots.txt
 /components/           // 复用组件（TopBar、GameCard、GameSearch、Sidebar等）
@@ -49,17 +56,86 @@
 
 ### 2. SEO 优化与搜索引擎
 
-- **Google Analytics 集成**: 在 `app/layout.tsx` 中使用 Next.js Script 组件集成 GA4 跟踪代码（ID: G-RJFSSGBY99），确保所有页面都被跟踪。
-- **动态 Sitemap**: `app/sitemap.ts` 自动生成包含所有页面和游戏的多语言 sitemap.xml，支持：
+#### **Google Analytics 集成**
+- 在 `app/layout.tsx` 中使用 Next.js Script 组件集成 GA4 跟踪代码（ID: G-RJFSSGBY99）
+- 使用 `strategy="afterInteractive"` 确保不阻塞页面渲染
+- 确保所有页面都被跟踪
+
+#### **动态 Sitemap**
+- `app/sitemap.ts` 自动生成包含所有页面和游戏的多语言 sitemap.xml
+- 支持：
   - 静态页面（首页、关于页面）
   - 多语言首页（en、zh、fr、es、de）
   - 分类页面（默认和多语言版本）
   - 游戏详情页面（默认和多语言版本）
   - 智能优先级设置和更新频率配置
-- **Robots.txt**: `app/robots.ts` 配置搜索引擎爬虫规则，允许访问所有公开页面，禁止访问 API 和内部文件。
-- **访问地址**: 
-  - Sitemap: `https://freeonlinegameshub.com/sitemap.xml`
-  - Robots: `https://freeonlinegameshub.com/robots.txt`
+
+#### **Robots.txt**
+- `app/robots.ts` 配置搜索引擎爬虫规则
+- 允许访问所有公开页面，禁止访问 API 和内部文件
+- 自动指向 sitemap.xml
+
+#### **完整的 SEO Metadata 系统**
+每个页面都包含完整的 metadata 配置：
+
+**根布局 (`app/layout.tsx`)**
+- 默认 title 模板：`%s - FreeOnlineGamesHub`
+- 全局 description 和 keywords
+- 多语言 alternate 链接配置
+- OpenGraph 和 Twitter Cards 默认配置
+- Robots 和 Google Bot 优化设置
+
+**首页 (`app/page.tsx`)**
+- Title: "Free Online Games - Play Thousands of Games for Free"
+- 详细的游戏描述和关键词
+- Canonical: 指向根路径
+- 完整的社交媒体分享配置
+
+**关于页面 (`app/about/page.tsx`)**
+- Title: "About FreeOnlineGamesHub - Free Online Gaming Platform"
+- 详细介绍网站特色
+- Canonical: 指向 /about
+- 完整的社交媒体配置
+
+**多语言首页 (`app/[lang]/page.tsx`)**
+- 动态 metadata：根据语言参数生成对应的标题和描述
+- 多语言 canonical：支持语言切换的 canonical 链接
+- 本地化配置：根据语言设置正确的 locale
+- 支持 en、zh、fr、es、de 五种语言
+
+**分类页面 (`app/games/[category]/page.tsx`)**
+- 动态标题：根据分类自动生成标题
+- 分类描述：每个分类都有专门的描述
+- 关键词优化：包含分类相关的关键词
+- Canonical：指向对应的分类页面
+- 支持 action、adventure、puzzle、sports、io、casual 等分类
+
+**搜索页面 (`app/search/page.tsx`)**
+- 动态 metadata：根据搜索查询生成标题和描述
+- 查询参数处理：正确处理搜索关键词
+- Canonical：包含搜索参数的 canonical URL
+- 支持空搜索和带查询的搜索
+
+**游戏详情页面**
+- **默认版本** (`app/games/[category]/[slug]/page.tsx`)
+- **多语言版本** (`app/[lang]/games/[category]/[slug]/page.tsx`)
+- 游戏特定信息：使用游戏的实际标题、描述和图片
+- 多语言支持：支持不同语言版本的 canonical 链接
+- 错误处理：游戏不存在时的 metadata 处理
+- OpenGraph 图片：使用游戏封面图片
+- 关键词：包含游戏标题、分类、标签等
+
+#### **SEO 优化特性**
+- **Title 优化**：使用模板系统，每个页面都有独特的标题
+- **Description 优化**：每个页面都有独特的描述，长度控制在 150-160 字符
+- **Canonical 链接**：所有页面都有正确的 canonical URL，避免重复内容
+- **OpenGraph & Twitter Cards**：完整的社交媒体分享配置
+- **关键词优化**：每个页面都有相关的关键词，支持多语言
+- **多语言 SEO**：正确的 hreflang 配置，语言特定的 canonical 链接
+
+#### **访问地址**
+- Sitemap: `https://freeonlinegameshub.com/sitemap.xml`
+- Robots: `https://freeonlinegameshub.com/robots.txt`
 
 ### 3. 首页与游戏列表
 
@@ -99,6 +175,8 @@
 ### 9. 多语言支持
 
 - 结构已预留多语言目录（`app/[lang]/`），可扩展多语言首页和游戏详情页。
+- 支持 en、zh、fr、es、de 五种语言。
+- 每个多语言页面都有对应的 SEO metadata。
 
 ### 10. 交互与体验
 
@@ -111,6 +189,8 @@
 - 使用 Next.js 15 的 MetadataRoute API 生成 sitemap 和 robots.txt，性能最佳。
 - Google Analytics 使用 `strategy="afterInteractive"` 确保不阻塞页面渲染。
 - 所有 SEO 相关文件都是动态生成，自动包含新添加的游戏和页面。
+- Metadata 使用 Next.js 15 的 `generateMetadata` 函数，支持动态生成。
+- 图片优化：OpenGraph 图片支持动态尺寸和 alt 文本。
 
 ---
 
@@ -135,6 +215,7 @@
 - 游戏数据支持 Markdown 格式
 - 更多 SEO 优化（结构化数据、Open Graph 等）
 - 性能监控和分析
+- 更多社交媒体平台集成
 
 ---
 
