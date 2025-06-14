@@ -9,6 +9,71 @@ import { notFound } from 'next/navigation';
 import { SidebarProvider } from '../components/SidebarContext';
 import DynamicLayout from '../components/DynamicLayout';
 import Script from 'next/script';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: {
+    default: 'FreeOnlineGamesHub - Play Free Online Games',
+    template: '%s - FreeOnlineGamesHub'
+  },
+  description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
+  keywords: 'free online games, browser games, action games, puzzle games, sports games, arcade games, casual games',
+  authors: [{ name: 'FreeOnlineGamesHub' }],
+  creator: 'FreeOnlineGamesHub',
+  publisher: 'FreeOnlineGamesHub',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://freeonlinegameshub.com'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en': '/en',
+      'zh': '/zh',
+      'fr': '/fr',
+      'es': '/es',
+      'de': '/de',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://freeonlinegameshub.com',
+    siteName: 'FreeOnlineGamesHub',
+    title: 'FreeOnlineGamesHub - Play Free Online Games',
+    description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FreeOnlineGamesHub - Free Online Games',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FreeOnlineGamesHub - Play Free Online Games',
+    description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+};
 
 export default function RootLayout({ children, params }: { children: React.ReactNode, params?: { lang?: string } }) {
   // 判断是否为多语言页面

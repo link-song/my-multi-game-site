@@ -1,4 +1,36 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+  description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
+  keywords: 'about FreeOnlineGamesHub, online gaming platform, free games, gaming community, browser games',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+    description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
+    url: 'https://freeonlinegameshub.com/about',
+    siteName: 'FreeOnlineGamesHub',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About FreeOnlineGamesHub',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+    description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
+    images: ['/og-image.jpg'],
+  },
+};
 
 export default function AboutPage() {
   return (

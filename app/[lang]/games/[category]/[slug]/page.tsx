@@ -9,15 +9,59 @@ export async function generateStaticParams({ params }: { params: { lang?: string
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; category: string; slug: string }> }): Promise<Metadata> {
   const { lang, category, slug } = await params;
   const game = getGameBySlug(category, slug, lang);
+  
+  if (!game) {
+    return {
+      title: 'Game Not Found - FreeOnlineGamesHub',
+      description: 'The requested game could not be found. Browse our collection of free online games.',
+    };
+  }
+  
+  const langNames = {
+    en: 'English',
+    zh: 'Chinese',
+    fr: 'French',
+    es: 'Spanish',
+    de: 'German'
+  };
+  
+  const langName = langNames[lang as keyof typeof langNames] || 'English';
+  
   return {
-    title: `${game?.title} - FreeOnlineGamesHub`,
-    description: game?.description,
+    title: `${game.title} - Free Online Game | FreeOnlineGamesHub`,
+    description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
+    keywords: `${game.title}, ${game.category} games, free online games, browser games, ${langName} games, ${game.tags?.join(', ') || ''}`,
+    alternates: {
+      canonical: `/${lang}/games/${category}/${slug}`,
+      languages: {
+        'en': `/en/games/${category}/${slug}`,
+        'zh': `/zh/games/${category}/${slug}`,
+        'fr': `/fr/games/${category}/${slug}`,
+        'es': `/es/games/${category}/${slug}`,
+        'de': `/de/games/${category}/${slug}`,
+      },
+    },
     openGraph: {
-      title: game?.title,
-      description: game?.description,
-      images: game?.coverImage ? [game.coverImage] : [],
-      url: `https://FreeOnlineGamesHub.com/${lang}/games/${game?.category}/${game?.slug}`,
+      title: `${game.title} - Free Online Game`,
+      description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
+      url: `https://freeonlinegameshub.com/${lang}/games/${category}/${slug}`,
       siteName: 'FreeOnlineGamesHub',
+      locale: lang === 'en' ? 'en_US' : `${lang}_${lang.toUpperCase()}`,
+      images: game.coverImage ? [
+        {
+          url: game.coverImage,
+          width: 800,
+          height: 600,
+          alt: game.title,
+        }
+      ] : [],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${game.title} - Free Online Game`,
+      description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
+      images: game.coverImage ? [game.coverImage] : [],
     },
   };
 }

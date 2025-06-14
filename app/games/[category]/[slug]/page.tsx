@@ -1,11 +1,54 @@
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 function getGame(category: string, slug: string) {
   const file = path.join(process.cwd(), 'games', category, `${slug}.json`);
   if (!fs.existsSync(file)) return null;
   return JSON.parse(fs.readFileSync(file, 'utf-8'));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ category: string; slug: string }> }): Promise<Metadata> {
+  const { category, slug } = await params;
+  const game = getGame(category, slug);
+  
+  if (!game) {
+    return {
+      title: 'Game Not Found - FreeOnlineGamesHub',
+      description: 'The requested game could not be found. Browse our collection of free online games.',
+    };
+  }
+  
+  return {
+    title: `${game.title} - Free Online Game | FreeOnlineGamesHub`,
+    description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
+    keywords: `${game.title}, ${game.category} games, free online games, browser games, ${game.tags?.join(', ') || ''}`,
+    alternates: {
+      canonical: `/games/${category}/${slug}`,
+    },
+    openGraph: {
+      title: `${game.title} - Free Online Game`,
+      description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
+      url: `https://freeonlinegameshub.com/games/${category}/${slug}`,
+      siteName: 'FreeOnlineGamesHub',
+      images: game.coverImage ? [
+        {
+          url: game.coverImage,
+          width: 800,
+          height: 600,
+          alt: game.title,
+        }
+      ] : [],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${game.title} - Free Online Game`,
+      description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
+      images: game.coverImage ? [game.coverImage] : [],
+    },
+  };
 }
 
 export default async function GameDetailPage(props: any) {
