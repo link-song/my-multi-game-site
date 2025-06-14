@@ -15,7 +15,7 @@
 
 ```
 /app/
-  layout.tsx           // 全局布局（TopBar、Sidebar、Footer、ScrollToTop）
+  layout.tsx           // 全局布局（TopBar、Sidebar、Footer、ScrollToTop、Google Analytics）
   page.tsx             // 首页
   about/page.tsx       // 关于页面
   search/page.tsx      // 搜索结果页
@@ -24,6 +24,8 @@
   [lang]/              // 多语言支持
     page.tsx           // 多语言首页
     games/             // 多语言下的游戏页面
+  sitemap.ts           // 动态生成 sitemap.xml
+  robots.ts            // 生成 robots.txt
 /components/           // 复用组件（TopBar、GameCard、GameSearch、Sidebar等）
 /lib/                  // 工具函数（如 games.ts 负责游戏数据读取和搜索）
 /games/                // 游戏数据（按分类分目录，json文件存储）
@@ -45,13 +47,27 @@
 - `Sidebar` 侧边栏，显示所有游戏分类。
 - `Footer` 页脚，包含主要分类和版权信息。
 
-### 2. 首页与游戏列表
+### 2. SEO 优化与搜索引擎
+
+- **Google Analytics 集成**: 在 `app/layout.tsx` 中使用 Next.js Script 组件集成 GA4 跟踪代码（ID: G-RJFSSGBY99），确保所有页面都被跟踪。
+- **动态 Sitemap**: `app/sitemap.ts` 自动生成包含所有页面和游戏的多语言 sitemap.xml，支持：
+  - 静态页面（首页、关于页面）
+  - 多语言首页（en、zh、fr、es、de）
+  - 分类页面（默认和多语言版本）
+  - 游戏详情页面（默认和多语言版本）
+  - 智能优先级设置和更新频率配置
+- **Robots.txt**: `app/robots.ts` 配置搜索引擎爬虫规则，允许访问所有公开页面，禁止访问 API 和内部文件。
+- **访问地址**: 
+  - Sitemap: `https://freeonlinegameshub.com/sitemap.xml`
+  - Robots: `https://freeonlinegameshub.com/robots.txt`
+
+### 3. 首页与游戏列表
 
 - 首页（`app/page.tsx`）展示所有游戏，支持"加载更多"功能（每次加载5行）。
 - 游戏卡片使用 `GameCard` 组件，响应式布局。
 - 分类页和多语言页同样支持"加载更多"功能。
 
-### 3. 搜索与搜索建议
+### 4. 搜索与搜索建议
 
 - 顶部搜索框（`GameSearch` 组件）支持：
   - 实时搜索建议（输入2个及以上字符触发，最多显示7条，超出显示"More"）。
@@ -61,40 +77,49 @@
   - 搜索建议和遮罩层有淡入淡出动画，体验流畅。
 - 搜索结果页（`app/search/page.tsx`）居中显示搜索框和所有匹配游戏。
 
-### 4. 游戏数据管理
+### 5. 游戏数据管理
 
 - `/games/` 目录下按分类存储 json 文件，每个文件为一个游戏。
 - `lib/games.ts` 提供游戏数据读取、搜索、分类等功能。
 
-### 5. 其它页面
+### 6. 其它页面
 
 - `/about` 页面介绍网站特色和使用方式，内容美观，支持点击跳转首页。
 
-### 6. 组件与样式
+### 7. 组件与样式
 
 - 所有 UI 组件均在 `/components/` 下，便于复用和维护。
 - 样式采用 Tailwind CSS，`globals.css` 只引入 Tailwind 基础内容。
 - 搜索建议、遮罩、按钮等均有现代化动画和响应式设计。
 
-### 7. API 路由
+### 8. API 路由
 
 - `/api/search/route.ts` 提供搜索建议接口，前端异步请求，返回匹配游戏名、slug、category。
 
-### 8. 多语言支持
+### 9. 多语言支持
 
 - 结构已预留多语言目录（`app/[lang]/`），可扩展多语言首页和游戏详情页。
 
-### 9. 交互与体验
+### 10. 交互与体验
 
 - "返回顶部"按钮全局可用，滚动时自动浮现，点击平滑回顶。
 - 搜索建议支持焦点模式，遮罩层只覆盖主内容区，TopBar 始终可见。
 - 所有页面均为响应式设计，适配桌面和移动端。
 
+### 11. 性能与优化
+
+- 使用 Next.js 15 的 MetadataRoute API 生成 sitemap 和 robots.txt，性能最佳。
+- Google Analytics 使用 `strategy="afterInteractive"` 确保不阻塞页面渲染。
+- 所有 SEO 相关文件都是动态生成，自动包含新添加的游戏和页面。
+
 ---
 
 ## 依赖与开发
 
-- 主要依赖见 `package.json`，如需类型支持可安装 `@types/react-dom` 等。
+- 主要依赖见 `package.json`，包含：
+  - `@types/react-dom` - React DOM 类型支持
+  - `@types/react` - React 类型支持
+  - `@types/node` - Node.js 类型支持
 - 开发命令：
   - `npm run dev` 启动开发环境
   - `npm run build` 构建生产环境
@@ -108,7 +133,8 @@
 - 多语言内容与切换
 - 用户评论、点赞、收藏等互动功能
 - 游戏数据支持 Markdown 格式
-- SEO、sitemap、结构化数据等
+- 更多 SEO 优化（结构化数据、Open Graph 等）
+- 性能监控和分析
 
 ---
 
