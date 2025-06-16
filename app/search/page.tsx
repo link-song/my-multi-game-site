@@ -9,14 +9,14 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   
   if (query) {
     return {
-      title: `Search Results for "${query}" - Free Online Games`,
+      title: `Search "${query}" - Free Games`,
       description: `Search results for "${query}" - Find and play free online games matching your search. Browse through our collection of action, puzzle, sports, and more games.`,
       keywords: `${query}, free online games, search games, browser games, ${query} games`,
       alternates: {
         canonical: `/search?query=${encodeURIComponent(query)}`,
       },
       openGraph: {
-        title: `Search Results for "${query}" - Free Online Games`,
+        title: `Search "${query}" - Free Games`,
         description: `Search results for "${query}" - Find and play free online games matching your search. Browse through our collection of action, puzzle, sports, and more games.`,
         url: `https://freeonlinegameshub.com/search?query=${encodeURIComponent(query)}`,
         siteName: 'FreeOnlineGamesHub',
@@ -24,21 +24,21 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
       },
       twitter: {
         card: 'summary_large_image',
-        title: `Search Results for "${query}" - Free Online Games`,
+        title: `Search "${query}" - Free Games`,
         description: `Search results for "${query}" - Find and play free online games matching your search. Browse through our collection of action, puzzle, sports, and more games.`,
       },
     };
   }
   
   return {
-    title: 'Search Games - Find Free Online Games',
+    title: 'Search Games - Free Games',
     description: 'Search and discover free online games at FreeOnlineGamesHub. Find action, puzzle, sports, racing, and more games by searching our extensive game library.',
     keywords: 'search games, find games, free online games, game search, browser games',
     alternates: {
       canonical: '/search',
     },
     openGraph: {
-      title: 'Search Games - Find Free Online Games',
+      title: 'Search Games - Free Games',
       description: 'Search and discover free online games at FreeOnlineGamesHub. Find action, puzzle, sports, racing, and more games by searching our extensive game library.',
       url: 'https://freeonlinegameshub.com/search',
       siteName: 'FreeOnlineGamesHub',
@@ -46,7 +46,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Search Games - Find Free Online Games',
+      title: 'Search Games - Free Games',
       description: 'Search and discover free online games at FreeOnlineGamesHub. Find action, puzzle, sports, racing, and more games by searching our extensive game library.',
     },
   };

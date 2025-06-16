@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const langName = langNames[lang as keyof typeof langNames] || 'English';
   
   return {
-    title: `${game.title} - Free Online Game | FreeOnlineGamesHub`,
+    title: `${game.title} - Free Game`,
     description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
     keywords: `${game.title}, ${game.category} games, free online games, browser games, ${langName} games, ${game.tags?.join(', ') || ''}`,
     alternates: {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       },
     },
     openGraph: {
-      title: `${game.title} - Free Online Game`,
+      title: `${game.title} - Free Game`,
       description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
       url: `https://freeonlinegameshub.com/${lang}/games/${category}/${slug}`,
       siteName: 'FreeOnlineGamesHub',
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${game.title} - Free Online Game`,
+      title: `${game.title} - Free Game`,
       description: game.description || `Play ${game.title} online for free in ${langName}. No download required, instant play in your browser!`,
       images: game.coverImage ? [game.coverImage] : [],
     },
@@ -81,6 +81,10 @@ export default async function GameDetail({ params }: { params: Promise<{ lang: s
         <span className="mx-2">›</span>
         <span className="text-gray-700">{game.title}</span>
       </nav>
+      
+      {/* H1 标题 */}
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">{game.title}</h1>
+      
       {/* 卡片式主内容区 */}
       <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden mb-8">
         {/* 左侧：游戏iframe */}

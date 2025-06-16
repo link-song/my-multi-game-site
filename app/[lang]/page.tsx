@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const langName = langNames[lang as keyof typeof langNames] || 'English';
   
   return {
-    title: `Free Online Games - ${langName} | FreeOnlineGamesHub`,
+    title: `Free Games - ${langName} | FreeOnlineGamesHub`,
     description: `Play thousands of free online games in ${langName} at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!`,
     keywords: `free online games, browser games, ${langName} games, action games, puzzle games, sports games, arcade games, casual games`,
     alternates: {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       },
     },
     openGraph: {
-      title: `Free Online Games - ${langName} | FreeOnlineGamesHub`,
+      title: `Free Games - ${langName} | FreeOnlineGamesHub`,
       description: `Play thousands of free online games in ${langName} at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!`,
       url: `https://freeonlinegameshub.com/${lang}`,
       siteName: 'FreeOnlineGamesHub',
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Free Online Games - ${langName} | FreeOnlineGamesHub`,
+      title: `Free Games - ${langName} | FreeOnlineGamesHub`,
       description: `Play thousands of free online games in ${langName} at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!`,
     },
   };

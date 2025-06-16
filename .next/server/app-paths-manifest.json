@@ -1,3 +1,13 @@
 {
-  "/page": "app/page.js"
+  "/api/search/route": "app/api/search/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/[lang]/page": "app/[lang]/page.js",
+  "/games/[category]/[slug]/page": "app/games/[category]/[slug]/page.js",
+  "/search/page": "app/search/page.js",
+  "/games/[category]/page": "app/games/[category]/page.js",
+  "/page": "app/page.js",
+  "/[lang]/games/[category]/[slug]/page": "app/[lang]/games/[category]/[slug]/page.js",
+  "/about/page": "app/about/page.js"
 }

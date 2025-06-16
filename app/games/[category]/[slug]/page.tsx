@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   }
   
   return {
-    title: `${game.title} - Free Online Game | FreeOnlineGamesHub`,
+    title: `${game.title} - Free Game`,
     description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
     keywords: `${game.title}, ${game.category} games, free online games, browser games, ${game.tags?.join(', ') || ''}`,
     alternates: {
       canonical: `/games/${category}/${slug}`,
     },
     openGraph: {
-      title: `${game.title} - Free Online Game`,
+      title: `${game.title} - Free Game`,
       description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
       url: `https://freeonlinegameshub.com/games/${category}/${slug}`,
       siteName: 'FreeOnlineGamesHub',
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${game.title} - Free Online Game`,
+      title: `${game.title} - Free Game`,
       description: game.description || `Play ${game.title} online for free. No download required, instant play in your browser!`,
       images: game.coverImage ? [game.coverImage] : [],
     },
@@ -67,6 +67,10 @@ export default async function GameDetailPage(props: any) {
         <span className="mx-1">›</span>
         <span className="text-white font-bold">{game.title}</span>
       </nav>
+      
+      {/* H1 标题 */}
+      <h1 className="text-3xl font-bold mb-6 text-white text-center">{game.title}</h1>
+      
       <div className="flex flex-col md:flex-row bg-gradient-to-br from-[#23244d] to-[#2a1a3c] rounded-xl shadow-lg overflow-hidden mb-8 border border-[#2e2e5e]">
         <div className="flex-1 bg-gray-900 flex items-center justify-center min-h-[360px]">
           <iframe

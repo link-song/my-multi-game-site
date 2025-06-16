@@ -37,14 +37,14 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     `Play the best ${category} games online for free. No download required, instant play!`;
   
   return {
-    title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Online ${category.charAt(0).toUpperCase() + category.slice(1)} Games`,
+    title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Games`,
     description: description,
     keywords: `${category} games, free ${category} games, online ${category} games, browser ${category} games, ${category} gaming`,
     alternates: {
       canonical: `/games/${category}`,
     },
     openGraph: {
-      title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Online ${category.charAt(0).toUpperCase() + category.slice(1)} Games`,
+      title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Games`,
       description: description,
       url: `https://freeonlinegameshub.com/games/${category}`,
       siteName: 'FreeOnlineGamesHub',
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Online ${category.charAt(0).toUpperCase() + category.slice(1)} Games`,
+      title: `${category.charAt(0).toUpperCase() + category.slice(1)} Games - Free Games`,
       description: description,
     },
   };

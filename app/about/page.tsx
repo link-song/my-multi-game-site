@@ -2,14 +2,14 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+  title: 'About FreeOnlineGamesHub - Gaming Platform',
   description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
   keywords: 'about FreeOnlineGamesHub, online gaming platform, free games, gaming community, browser games',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+    title: 'About FreeOnlineGamesHub - Gaming Platform',
     description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
     url: 'https://freeonlinegameshub.com/about',
     siteName: 'FreeOnlineGamesHub',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About FreeOnlineGamesHub - Free Online Gaming Platform',
+    title: 'About FreeOnlineGamesHub - Gaming Platform',
     description: 'Learn about FreeOnlineGamesHub - the ultimate destination for free online games. Discover our gaming library, features, and why millions choose us for their gaming entertainment.',
     images: ['/og-image.jpg'],
   },

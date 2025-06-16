@@ -3,14 +3,14 @@ import GameListWithLoadMore from '../components/GameListWithLoadMore';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Online Games - Play Thousands of Games for Free',
+  title: 'Free Online Games - Play Free Games',
   description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, racing, and more games available. No download required, play instantly in your browser!',
   keywords: 'free online games, browser games, action games, puzzle games, sports games, racing games, arcade games, casual games, no download games',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Free Online Games - Play Thousands of Games for Free',
+    title: 'Free Online Games - Play Free Games',
     description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, racing, and more games available. No download required, play instantly in your browser!',
     url: 'https://freeonlinegameshub.com',
     siteName: 'FreeOnlineGamesHub',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Online Games - Play Thousands of Games for Free',
+    title: 'Free Online Games - Play Free Games',
     description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, racing, and more games available. No download required, play instantly in your browser!',
     images: ['/og-image.jpg'],
   },

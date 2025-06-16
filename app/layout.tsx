@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: {
-    default: 'FreeOnlineGamesHub - Play Free Online Games',
+    default: 'FreeOnlineGamesHub - Free Games',
     template: '%s - FreeOnlineGamesHub'
   },
   description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://freeonlinegameshub.com',
     siteName: 'FreeOnlineGamesHub',
-    title: 'FreeOnlineGamesHub - Play Free Online Games',
+    title: 'FreeOnlineGamesHub - Free Games',
     description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
     images: [
       {
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FreeOnlineGamesHub - Play Free Online Games',
+    title: 'FreeOnlineGamesHub - Free Games',
     description: 'Play thousands of free online games at FreeOnlineGamesHub. Action, adventure, puzzle, sports, and more games available. No download required, play instantly!',
     images: ['/og-image.jpg'],
   },
